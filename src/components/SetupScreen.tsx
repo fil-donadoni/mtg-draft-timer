@@ -41,6 +41,8 @@ const UI: Record<
         passHint: string;
         lastPick: string;
         lastPickHint: string;
+        review: string;
+        reviewHint: string;
         build: string;
         buildHint: string;
         buildMinutes: string;
@@ -73,6 +75,8 @@ const UI: Record<
         passHint: "Dopo «draft»: scegliere la carta e passare la busta.",
         lastPick: "Ultima carta (s)",
         lastPickHint: "L'ultima carta non ha tempo limite (MTR).",
+        review: "Revisione tra le buste (s)",
+        reviewHint: "Le MTR dicono 60 s dopo la prima busta, +30 s a busta.",
         build: "Costruzione del mazzo",
         buildHint: "Registrazione e costruzione dopo il draft (MTR: 25 min).",
         buildMinutes: "Costruzione (min)",
@@ -90,7 +94,7 @@ const UI: Record<
         summary: (picks, total) => `${picks} pick · circa ${total}`,
         firstPick: (seconds) => `Prima pick: ${seconds} s`,
         mtrNote:
-            "Tempi per pick dalle Magic Tournament Rules, Appendice B. Revisione 60 s dopo la prima busta, +20 s per ogni busta successiva.",
+            "Tempi per pick dalle Magic Tournament Rules, Appendice B. Il resto è a scelta del tavolo.",
     },
     en: {
         title: "Draft Timer",
@@ -107,6 +111,8 @@ const UI: Record<
         passHint: "After “draft”: take a card and pass the pack.",
         lastPick: "Last card (s)",
         lastPickHint: "The last card has no time limit (MTR).",
+        review: "Review between packs (s)",
+        reviewHint: "The MTR say 60 s after the first pack, +30 s per pack.",
         build: "Deck building",
         buildHint:
             "Registration and construction after the draft (MTR: 25 min).",
@@ -125,7 +131,7 @@ const UI: Record<
         summary: (picks, total) => `${picks} picks · about ${total}`,
         firstPick: (seconds) => `First pick: ${seconds} s`,
         mtrNote:
-            "Pick timings from the Magic Tournament Rules, Appendix B. Review 60 s after the first pack, +20 s per following pack.",
+            "Pick timings from the Magic Tournament Rules, Appendix B. The rest is up to the table.",
     },
 };
 
@@ -231,6 +237,7 @@ export function SetupScreen({
                     {numberField("checkSeconds", t.check, t.checkHint)}
                     {numberField("passSeconds", t.pass, t.passHint)}
                     {numberField("lastPickSeconds", t.lastPick, t.lastPickHint)}
+                    {numberField("reviewSeconds", t.review, t.reviewHint)}
                     <div className="flex items-center justify-between gap-4">
                         <div className="grid gap-1">
                             <Label htmlFor="deckBuilding">{t.build}</Label>

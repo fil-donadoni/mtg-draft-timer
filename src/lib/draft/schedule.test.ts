@@ -20,9 +20,9 @@ describe("buildSchedule", () => {
         // The open step stands in for the first pick's check.
         expect(ofKind(steps, "check")).toHaveLength(3 * 12);
         expect(ofKind(steps, "last-pick")).toHaveLength(3);
-        // Review only between packs.
+        // Review only between packs, flat 30 s (not the MTR 60/90 ramp).
         expect(ofKind(steps, "review").map((r) => r.duration)).toEqual([
-            60, 90,
+            30, 30,
         ]);
         expect(steps.at(-1)?.kind).toBe("done");
     });

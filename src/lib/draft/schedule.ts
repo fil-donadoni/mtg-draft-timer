@@ -1,9 +1,4 @@
-import {
-    passDirection,
-    pickSeconds,
-    reviewSeconds,
-    type PassDirection,
-} from "./timing";
+import { passDirection, pickSeconds, type PassDirection } from "./timing";
 
 export type Locale = "it" | "en";
 
@@ -23,6 +18,12 @@ export interface DraftConfig {
     passSeconds: number;
     /** Seconds to check and take the last (untimed) card. */
     lastPickSeconds: number;
+    /**
+     * Review period between packs. The MTR say 60 s after the first pack and
+     * +30 s per pack; a casual table wants a flat 30 s, so this is a single
+     * number, deliberately not the MTR ramp.
+     */
+    reviewSeconds: number;
     /** Whether to time deck registration + construction after the draft. */
     deckBuilding: boolean;
     /** Minutes for deck registration + construction (MTR: 25 for a draft). */
@@ -37,6 +38,7 @@ export const DEFAULT_CONFIG: DraftConfig = {
     checkSeconds: 4,
     passSeconds: 5,
     lastPickSeconds: 5,
+    reviewSeconds: 30,
     deckBuilding: true,
     deckBuildingMinutes: 25,
     locale: "it",
@@ -49,6 +51,7 @@ export const CONFIG_LIMITS = {
     checkSeconds: { min: 1, max: 30 },
     passSeconds: { min: 1, max: 30 },
     lastPickSeconds: { min: 1, max: 30 },
+    reviewSeconds: { min: 10, max: 300 },
     deckBuildingMinutes: { min: 5, max: 90 },
 } as const;
 
@@ -139,6 +142,7 @@ export function normalizeConfig(input: Partial<DraftConfig>): DraftConfig {
         checkSeconds: clamp("checkSeconds"),
         passSeconds: clamp("passSeconds"),
         lastPickSeconds: clamp("lastPickSeconds"),
+        reviewSeconds: clamp("reviewSeconds"),
         deckBuilding: Boolean(c.deckBuilding),
         deckBuildingMinutes: clamp("deckBuildingMinutes"),
         locale: c.locale === "en" ? "en" : "it",
@@ -195,7 +199,11 @@ export function buildSchedule(rawConfig: DraftConfig): Step[] {
         }
 
         if (pack < config.packs) {
-            steps.push({ kind: "review", pack, duration: reviewSeconds(pack) });
+            steps.push({
+                kind: "review",
+                pack,
+                duration: config.reviewSeconds,
+            });
         }
     }
 

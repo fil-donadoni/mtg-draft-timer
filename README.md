@@ -31,7 +31,6 @@ wake lock dello schermo. Le impostazioni restano in `localStorage`.
 | 4 · 3 · 2     | 5       |
 | 1             | —       |
 
-Revisione: 60 s dopo la prima busta, +20 s per ogni busta successiva.
 Passaggio: sinistra, destra, sinistra (MTR 7.7). Buste sopra le 15 carte
 usano la riga 15.
 
@@ -46,7 +45,9 @@ registrazione e costruzione del mazzo (MTR Appendice B), con annunci a 10,
 5 e 1 minuto.
 
 Non da regolamento, configurabili: apertura busta (20 s), conteggio (4 s),
-draft e passaggio (5 s), ultima carta (5 s).
+draft e passaggio (5 s), ultima carta (5 s), revisione tra le buste (30 s
+fissi — le MTR dicono 60 s dopo la prima busta e +30 s per busta, troppo
+per un tavolo casual).
 
 ## Struttura
 

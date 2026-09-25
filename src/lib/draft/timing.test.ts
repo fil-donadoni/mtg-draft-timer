@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { passDirection, pickSeconds, reviewSeconds } from "./timing";
+import { passDirection, pickSeconds } from "./timing";
 
 describe("pickSeconds (MTR Appendix B)", () => {
     it.each([
@@ -33,18 +33,6 @@ describe("pickSeconds (MTR Appendix B)", () => {
     it("rejects invalid counts", () => {
         expect(() => pickSeconds(0)).toThrow(RangeError);
         expect(() => pickSeconds(2.5)).toThrow(RangeError);
-    });
-});
-
-describe("reviewSeconds", () => {
-    it("is 60 after pack 1 and grows by 30 per pack", () => {
-        expect(reviewSeconds(1)).toBe(60);
-        expect(reviewSeconds(2)).toBe(90);
-        expect(reviewSeconds(3)).toBe(120);
-    });
-
-    it("rejects invalid pack numbers", () => {
-        expect(() => reviewSeconds(0)).toThrow(RangeError);
     });
 });
 

@@ -41,8 +41,8 @@ La pick con una sola carta rimasta: «controllate di avere una carta e
 prendetela». Senza tempo MTR.
 
 **Revisione** (review):
-Il periodo MTR tra una busta e l'altra in cui i giocatori guardano le
-proprie pick: 60 s dopo la prima busta, +20 s per ogni successiva.
+Il periodo tra una busta e l'altra in cui i giocatori guardano le proprie
+pick. Durata fissa scelta dal tavolo (30 s), non la rampa MTR 60/90/120.
 _Avoid_: pausa, review period (in italiano)
 
 **Costruzione** (build):

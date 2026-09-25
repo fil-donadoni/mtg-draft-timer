@@ -39,7 +39,7 @@ describe("stepAnnouncement (it)", () => {
     it("announces the review with its length", () => {
         const review = steps.find((s) => s.kind === "review")!;
         expect(stepAnnouncement(review, "it", 3)).toBe(
-            "Fine della busta 1. Periodo di revisione: 60 secondi."
+            "Fine della busta 1. Periodo di revisione: 30 secondi."
         );
     });
 
