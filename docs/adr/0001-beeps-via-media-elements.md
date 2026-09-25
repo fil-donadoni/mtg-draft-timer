@@ -1,0 +1,3 @@
+# Beeps play through `<audio>` elements, not the Web Audio API
+
+The judge's 3-2-1 beeps were first synthesized with an `OscillatorNode`. On iOS the ring/silent switch mutes Web Audio but not media elements or `speechSynthesis`, and a phone lying on a draft table is on silent more often than not — so the beeps vanished while the voice kept going (measured in production, 2026-09-25). The beeps are now short WAVs built in memory (`src/lib/audio/beeps.ts`) and played through `HTMLAudioElement`s, unlocked by the start tap. Web Audio stays out of the app on purpose; the same constraint applies to any future pre-generated voice clips.
